@@ -1,15 +1,21 @@
 # comb
-for combing through input,target data
+an application for combing through prompt, target instruction data for fine-tuning LLMs
 
-## requirements
-- iterate over input-target pairs of text
-- highlight desired text to keep from either side (maybe just have text boxes where I can delete undesired sections)
-- insert additional text from the user
-    - more reason text box is just the best option
-- "next" and "repeat" which both save the current pair, but the repeat sets the current item to the next item
-- inputs-target pairs might need to be split up into smaller chunks. need to be able to do more than one iteration on a single pair
-- function to compile all the pairs into a giant json
+if you already have prompt and target pairs scraped/gathered, but they need to be edited, formatted, and such, this is the right tool for you.
 
-## how make
-- js that can save through regular save file button
-- python to update the js file with the data needing labelling
+![comb demo screenshot]((https://raw.githubusercontent.com/spencerhhubert/comb/main/assets/demo.png)
+
+## how to use
+although this is a server application, it's really only meant to be run locally for quickly iterating over your own data.
+
+you'll need two folders in `/data`, `/data/raw` and `/data/out`. `out` can be empty. `raw` will contain `.JSON` files, each with a single prompt, target (the keys "prompt and "target" need to exist) inside them.
+
+the program will iterate over those files, and write the edited versions to `/data/out` with the same file names.
+
+```
+chmod +x utils/docker/*
+./utils/docker/build.sh
+./utils/docker/run.sh
+```
+
+and go to `http://localhost:3000/`
