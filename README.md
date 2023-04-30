@@ -3,7 +3,7 @@ an application for combing through prompt, target instruction data for fine-tuni
 
 if you already have prompt and target pairs scraped/gathered, but they need to be edited, formatted, and such, this is the right tool for you.
 
-![comb demo screenshot]((https://raw.githubusercontent.com/spencerhhubert/comb/main/assets/demo.png)
+![comb demo screenshot](https://raw.githubusercontent.com/spencerhhubert/comb/main/assets/demo.png)
 
 ## how to use
 although this is a server application, it's really only meant to be run locally for quickly iterating over your own data.
