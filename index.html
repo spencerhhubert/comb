@@ -14,8 +14,8 @@
         <p>Input the path to the raw data. It should contain .JSON files each of which is a has a "prompt" and "target" key.</p>
         <div class="col-auto" style="margin: 20px;">
             <form method="POST" action="/paths" id="paths">
-                <input type="text" id="raw_path" placeholder="path to raw data on server" style="width: 300px;" name="raw_data_path">
-                <input type="text" id="out_path" placeholder="path for output data" style="width: 300px;" name="output_data_path">
+                <input type="text" id="raw_path" placeholder="path to raw data on server" style="width: 300px;" name="raw_data_path" value="/data/raw/test01">
+                <input type="text" id="out_path" placeholder="path for output data" style="width: 300px;" name="output_data_path" value="/data/out">
                 <button type="submit">Submit</button>
             </form>
         </div>
