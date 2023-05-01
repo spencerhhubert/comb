@@ -8,10 +8,8 @@
 <body>
     <div class="container">
     <h1 style="margin-top: 20px">Comb</h1>
-    <p>Comb over edit raw prompt and target pairs for instruction datasets to prepare them for training</p>
     <hr>
     <div class="row justify-content-center d-flex" style="margin-top: 20px;">
-        <p>Input the path to the raw data. It should contain .JSON files each of which is a has a "prompt" and "target" key.</p>
         <div class="col-auto" style="margin: 20px;">
             <form method="POST" action="/paths" id="paths">
                 <input type="text" id="raw_path" placeholder="path to raw data on server" style="width: 300px;" name="raw_data_path" value="/data/raw/test01">
@@ -31,7 +29,6 @@
             <textarea id="target" class="data-input">empty target</textarea>
         </div>
         <div class="row d-flex justify-content-center" style="margin-top: 20px;">
-        <p>After the data has been fixed, "Next" and "Repeat" will both save the current data, but repeat will display the current one again, refreshed.</p>
             <div class="col-auto" >
                 <div class="text-center">
                     <button type="submit" id="next">Next</button>
