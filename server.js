@@ -38,10 +38,17 @@ function sendNextFile(res) {
 function checkPaths(paths) {
     for (let path of paths) {
         if (!fs.existsSync(path)) {
+            console.log("Path does not exist: " + path);
             return false;
         }
     }
     return true;
+}
+
+function appendTime(filename) {
+    filename = filename.split(".");
+    filename[0] += "_" + Date.now();
+    return filename.join(".");
 }
 
 app.post('/paths', (req, res) => {
@@ -58,14 +65,23 @@ app.post('/next', (req, res) => {
     if (raw_data_path === "" || output_data_path === "") {
         res.send({ "code": "400", "message": "Need to set the paths to the prompt and target files" });
     } else {
-        out_data = {
+        data = {
             "prompt": req.body.prompt,
             "target": req.body.target,
         };
-        out_path = path.join(output_data_path, current_file);
-        fs.writeFileSync(out_path, JSON.stringify(out_data));
-        current_idx += (req.body.repeat ? 0 : 1);
-        sendNextFile(res);
+        write_path = path.join(output_data_path, appendTime(current_file));
+        fs.writeFileSync(write_path, JSON.stringify(data));
+        if (req.body.repeat) {
+            sendNextFile(res);
+        } else {
+            current_idx += 1;
+            current_file = fs.readdirSync(raw_data_path).sort()[current_idx];
+            if (current_idx < fs.readdirSync(raw_data_path).length) {
+                sendNextFile(res);
+            } else {
+                res.send({ "code": "200", "message": "Done" });
+            }
+        }
     }
 });
 
